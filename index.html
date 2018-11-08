@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Hello World</title>
+
+<body>
+	<script src="pixi.js"></script>
+	<script src="scaleToWindow.js"></script>
+	<script>
+		/*
+		// Create the renderer
+		var renderer = PIXI.autoDetectRenderer(256, 256);
+
+		// Add the canvas to the HTML document
+		document.body.appendChild(renderer.view);
+
+		// Create a container object called the `stage`
+		let stage = new PIXI.Container();
+
+		// Tell the `renderer` to `render` the stage
+		renderer.render(stage);
+
+		// Giving the canvas an optional border
+		renderer.view.style.border = "5px dashed black";
+
+		// Change the background color of the Canvas
+		renderer.view.backgroundColor = 0xEEEEEE;
+
+		// CSS styling inside of JavaScript for Pixi
+		renderer.view.style.width = (window.innerWidth * 0.75)  + "px";
+		renderer.view.style.height = (window.innerHeight * 0.5) + "px";
+		renderer.view.style.display = "block";
+
+		// scaleToWindow plugin for rendering the game's view properly
+		scaleToWindow(renderer.view, gray);
+
+		// Get the window ratio value
+		let scale = scaleToWindow(renderer.view);
+		console.log(scale);
+
+		// change size as window is resized
+		window.addEventListener("resize", event => {
+ 		scaleToWindow(renderer.view);
+ 		});
+
+ 		// pointers baybee
+ 		pointer.x = pointer.x / scale;
+ 		pointer.y = pointer.y / scale;
+
+ 		// Let's make an image out of textures and sprites
+ 		let aTexture = PIXI.utils.TextureCache["img/fuck.png"];
+ 		let aSprite = new PIXI.Sprite(aTexture);
+
+ 		// Load an image using a loader
+ 		PIXI.loader
+ 		.add("fuck.png")
+ 		.load(setup);
+ 		function setup() {
+ 			let sprite = PIXI.Sprite(PIXI.loader.resources("fuck.png").texture);
+ 		}
+ 		/* 
+ 		Note:
+ 		Pixi's Sprite class also has a method called fromImage that lets you make a sprite directly from an image file
+ 		*/
+ 		// At this point, I will comment out all previous code */
+
+ 		// Create the stage and renderer
+ 		let stage = new PIXI.Container(),
+ 			renderer = PIXI.autoDetectRenderer(512, 512);
+ 		document.body.appendChild(renderer.view);
+
+
+ 		// Use Pixi's built-in `loader` object to load an image
+ 		PIXI.loader.add("img/melBehind.png").load(setup);
+
+ 		// This `setup` function will run when the image has loaded
+ 		function setup() {
+
+ 			//let mel;
+ 			//mel.setAttribute('crossorigin', 'anonymous');
+
+ 			// Create the sprite from the texture
+ 			let mel = new PIXI.Sprite(
+ 				PIXI.loader.resources["img/melBehind.png"].texture
+ 			);
+
+ 			// Add the sprite to the stage
+ 			stage.addChild(mel);
+
+ 			// Render the stage
+ 			renderer.render(stage);
+ 		}
+
+ 		renderer.view.style.width = (window.innerWidth * 0.75)  + "px";
+		renderer.view.style.height = (window.innerHeight * 0.5) + "px";
+		renderer.view.style.display = "block";
+		let scale = scaleToWindow(renderer.view);
+		console.log(scale);
+		window.addEventListener("resize", event => {
+ 		scaleToWindow(renderer.view);
+ 		});
+	</script>
+</body>
+<style src="practice.css"></style>
