@@ -12,35 +12,50 @@
  		document.body.appendChild(renderer.view);
 
 
- 		// Use Pixi's built-in `loader` object to load an image
- 		PIXI.loader.add("img/melBehind.png").load(setup);
+ 		// Use Pixi's built-in `loader` object to load the example bitmap
+ 		PIXI.loader.add("img/Bushly_PrincessSera.png").load(setup);
 
  		// This `setup` function will run when the image has loaded
  		function setup() {
 
- 			//let mel;
- 			//mel.setAttribute('crossorigin', 'anonymous');
+ 			// Create the `tileset` from the texture
+ 			let texture = PIXI.utils.TextureCache["img/Bushly_PrincessSera.png"];
+
+ 			// Make your GPU round to the nearest integer value
+			texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+
+ 			// Create a rectangle object that defines the position and
+ 			// size of the sub-image you want to extract from the texture
+ 			let rectangle = new PIXI.Rectangle(34, 140, 28, 56);
+
+ 			// Tell the texture to use that rectangular section
+ 			texture.frame = rectangle;
 
  			// Create the sprite from the texture
- 			let mel = new PIXI.Sprite(
- 				PIXI.loader.resources["img/melBehind.png"].texture
- 			);
+ 			let adventuress = new PIXI.Sprite(texture);
 
- 			// Add the sprite to the stage
- 			stage.addChild(mel);
+ 			// position the sprite onto the canvas
+ 			adventuress.x = 64;
+ 			adventuress.y = 64;
+
+ 			// Scale the sprite up so it's 4 times bigger than the original size
+ 			// adventuress.scale.set(2, 2);
+
+ 			// Add sprite to the stage
+ 			stage.addChild(adventuress);
 
  			// Render the stage
  			renderer.render(stage);
  		}
 
- 		renderer.view.style.width = (window.innerWidth * 0.75)  + "px";
-		renderer.view.style.height = (window.innerHeight * 0.5) + "px";
+ 		renderer.view.style.width = window.innerWidth   + "px";
+		renderer.view.style.height = window.innerHeight + "px";
 		renderer.view.style.display = "block";
 		let scale = scaleToWindow(renderer.view);
 		console.log(scale);
 		window.addEventListener("resize", event => {
- 		scaleToWindow(renderer.view);
- 		});
+			scaleToWindow(renderer.view);
+		});
 	</script>
 </body>
 <style src="practice.css"></style>
